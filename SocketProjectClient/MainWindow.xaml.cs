@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SocketProjectClient
 {
@@ -20,9 +11,26 @@ namespace SocketProjectClient
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow() => InitializeComponent();
+
+        private void sendButton_Click(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
+            using (TcpClient client = new TcpClient())
+            {
+                try
+                {
+                    //Connect
+                    client.Connect(new IPEndPoint(IPAddress.Parse($"192.168.0.{ipIdentifier.Text}"), 13356));
+
+                    //Write Message
+                    byte[] buffer = Encoding.UTF8.GetBytes(textBox.Text);
+                    client.GetStream().Write(buffer, 0, buffer.Length);
+                }
+                catch (Exception a)
+                {
+                    ipIdentifier.Text = a.ToString();
+                }                
+            }
         }
     }
 }

@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SocketProjectClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="230" Width="375">
     <Grid>
-        
+        <TextBox x:Name="textBox" Height="164" VerticalAlignment="Top"/>
+        <Button x:Name="sendButton" Content="Send" Click="sendButton_Click" Margin="50,164,0,0" Height="35" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84"/>
+        <Label Content="192.168.0." Margin="204,164,0,0" Width="88" Height="35" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBox x:Name="ipIdentifier" Text="173" Margin="265,168,0,0" HorizontalAlignment="Left" Width="27" Height="18" VerticalAlignment="Top"/>
+        <Label Content="Set IP:" Margin="146,164,0,0" Height="35" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81"/>
+
     </Grid>
 </Window>
